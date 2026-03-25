@@ -10,5 +10,16 @@
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.2.3"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashishkr403/playwrightwithjs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ashishkr403/playwrightwithjs/issues"
+  },
+  "homepage": "https://github.com/Ashishkr403/playwrightwithjs#readme"
 }

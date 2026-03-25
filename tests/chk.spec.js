@@ -2,8 +2,8 @@ import { test, expect } from '@playwright/test';
 
 const BASE_URL      = 'https://eventhub.rahulshettyacademy.com'
 // ── Credentials ────────────────────────────────────────────────────────────────
-const USER_EMAIL    = 'replacewithyourcredentials@gmail.com';// update email and password with your account
-const USER_PASSWORD = 'yourpassword'; 
+const USER_EMAIL    = 'ashishkr403@zohomail.com';// update email and password with your account
+const USER_PASSWORD = 'Rama@403'; 
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 async function login(page) {
