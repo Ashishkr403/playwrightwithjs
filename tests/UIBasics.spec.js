@@ -21,7 +21,7 @@ test('Browser Context Playwright Test', async ({browser})=>
    console.log(allTitles);
 
 })
-   test.only('UI Controls', async ({page})=>
+   test('UI Controls', async ({page})=>
    {
  await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const userName =  page.locator("#username");

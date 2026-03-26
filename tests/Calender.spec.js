@@ -32,5 +32,5 @@ test("Calendar validations", async ({ page }) => {
     const value = await inputs.nth(i).inputValue();
     expect(value).toEqual(expectedList[i]);
   }
-  await page.pause();
+  //await page.pause();
 });
