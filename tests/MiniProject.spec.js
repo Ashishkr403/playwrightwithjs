@@ -32,7 +32,6 @@ const eventCard = page.locator('a').filter({ hasText: eventTitle });
 await expect(page.locator('a').filter({ hasText: eventTitle })).toBeVisible();
 //console.log(chk);
 // ✅ Span se text lo — class "text-emerald-600" unique hai
-const seatText = await eventCard.locator("span.text-emerald-600").textContent();
 
 // ✅ parseInt — "150 seats available" → 150
 const seatsBeforeBooking = parseInt(seatText);
