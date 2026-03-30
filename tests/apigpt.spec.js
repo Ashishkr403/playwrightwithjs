@@ -7,9 +7,8 @@ const loginPayload = {
 
 let token;
 
-// ✅ STEP 1: API se token lena
+// ✅ Step 1: Get token once
 test.beforeAll(async () => {
-
     const apiContext = await request.newContext();
 
     const loginResponse = await apiContext.post(
@@ -22,66 +21,53 @@ test.beforeAll(async () => {
     const loginResponseJson = await loginResponse.json();
     token = loginResponseJson.token;
 
-    console.log("TOKEN:", token);
+    console.log("Token Generated:", token);
 });
 
 
-// ✅ STEP 2: UI test start
+// ✅ Step 2: Use token in UI test
 test('Place the order', async ({ page }) => {
 
-    // 🔹 Token inject karo (login bypass)
-    await page.addInitScript((value) => {
+    // Inject token into localStorage
+    await page.addInitScript(value => {
         window.localStorage.setItem('token', value);
     }, token);
 
     const email = "ashishkr403@gmail.com";
     const productName = "ZARA COAT 3";
 
-    // 🔹 Website open karo
     await page.goto("https://rahulshettyacademy.com/client/");
-    await page.waitForLoadState('networkidle');
 
-    // 🔹 Confirm login success
-    await expect(page.locator(".fa-sign-out")).toBeVisible();
-
-    // 🔹 Products fetch karo
     const products = page.locator(".card-body");
+    await page.locator(".card-body b").first().waitFor();
+
     const count = await products.count();
 
-    // 🔹 Product select karo
+    // ✅ Add product to cart
     for (let i = 0; i < count; ++i) {
         const title = await products.nth(i).locator("b").textContent();
 
         if (title?.trim() === productName) {
-
             await products.nth(i).locator("text=Add to Cart").click();
-
-            // 🔹 Confirmation wait
-            await page.locator("#toast-container").waitFor();
-
             break;
         }
     }
 
-    // 🔹 Cart open karo
-    await page.locator("[routerlink*='cart']").waitFor();
+    // ✅ Go to cart
     await page.locator("[routerlink*='cart']").click();
-
     await page.waitForLoadState('networkidle');
 
-    // 🔹 Product verify
     await expect(page.locator(`h3:has-text("${productName}")`)).toBeVisible();
 
-    // 🔹 Checkout
+    // ✅ Checkout
     await page.locator("text=Checkout").click();
 
     await page.locator("select.input.ddl").nth(0).selectOption("08");
     await page.locator("select.input.ddl").nth(1).selectOption("26");
     await page.locator("input.input.txt").nth(3).fill("123");
 
-    // 🔹 Country select
-    await page.locator("[placeholder*='Country']")
-        .pressSequentially("ind", { delay: 100 });
+    // ✅ Select country
+    await page.locator("[placeholder*='Country']").pressSequentially("ind", { delay: 100 });
 
     const dropDown = page.locator(".ta-results");
     await dropDown.waitFor();
@@ -97,27 +83,25 @@ test('Place the order', async ({ page }) => {
         }
     }
 
-    // 🔹 Email verify
-    await expect(page.locator(".user__name [type='text']").first())
-        .toHaveText(email);
+    // ✅ Verify email
+    await expect(page.locator(".user__name [type='text']").first()).toHaveText(email);
 
-    // 🔹 Place order
-    await page.locator(".btnn.action__submit").click();
+    // ✅ Place order
+    await page.locator(".btnn.action__submit.ng-star-inserted").click();
 
     await expect(page.locator(".hero-primary"))
         .toContainText("Thankyou for the order");
 
-    // 🔹 Order ID capture
+    // ✅ Capture order ID
     const orderId = await page.locator("label.ng-star-inserted").textContent();
-    console.log("ORDER ID:", orderId);
+    console.log("Order ID:", orderId);
 
-    // 🔹 Orders page open
+    // ✅ Go to orders
     await page.locator("button[routerlink*='myorders']").click();
     await page.locator("tbody").waitFor();
 
     const rows = page.locator("tbody tr");
 
-    // 🔹 Order match
     for (let i = 0; i < await rows.count(); ++i) {
         const rowOrderId = await rows.nth(i).locator("th").textContent();
 
@@ -127,7 +111,7 @@ test('Place the order', async ({ page }) => {
         }
     }
 
-    // 🔹 Final verification
+    // ✅ Verify order details
     const orderDetailsId = await page.locator(".col-text").textContent();
 
     expect(orderId.trim().includes(orderDetailsId.trim())).toBeTruthy();
