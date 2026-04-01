@@ -17,7 +17,7 @@ test.beforeAll(async () => {
         { data: loginPayload }
     );
 
-    expect(loginResponse.ok()).toBeTruthy();
+    expect(loginResponse.ok()).toBeTruthy(); 
 
     const loginResponseJson = await loginResponse.json();
     token = loginResponseJson.token;

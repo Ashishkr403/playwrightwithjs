@@ -19,10 +19,7 @@ await expect(page.locator("#displayed-text")).toBeHidden();
     await page.locator("#confirmbtn").click();
     await page.locator("#mousehover").hover();
     const frameID = page.frameLocator("#courses-iframe");
-    //wait frameID.locator("li a[href*='lifetime-access']").click();
     await frameID.locator("li a[href*='lifetime-access']:visible").click();
-
-   
     const textf = await frameID.locator(".text h2").textContent();
      console.log(textf.split(" ")[1]);
     //frame.locator
