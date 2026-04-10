@@ -7,8 +7,9 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "exceljs": "^4.4.0"
-  }
+  },
+  "keywords": [],
+  "description": ""
 }

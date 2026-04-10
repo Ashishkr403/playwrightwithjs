@@ -4,7 +4,7 @@ const exceljs = require ('exceljs');
 async function excelTest(params) {
     
 const workbook = new exceljs.Workbook();
-await workbook.xlsx.readFile("C:\\Users\\hp\\Downloads\\ExceldownloadTest.xlsx");
+await workbook.xlsx.readFile("D:\\PW_JS\\playwrightwithjs\\ExceldownloadTest.xlsx");
     const worksheet = workbook.getWorksheet('Sheet1');
     worksheet.eachRow((row, rowNumber) => 
     {
