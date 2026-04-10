@@ -1,9 +1,12 @@
 import { test, expect } from '@playwright/test';
 const exceljs = require('exceljs');
 
+
+    //  Function to write or update excel sheet
 async function writeExcel(searchText, replacementText, filePath) {
     const workbook = new exceljs.Workbook();
     await workbook.xlsx.readFile(filePath);
+
 
     const worksheet = workbook.getWorksheet('Sheet1');
 
@@ -14,7 +17,7 @@ async function writeExcel(searchText, replacementText, filePath) {
 
     await workbook.xlsx.writeFile(filePath);
 }
-
+    // Function to read the excel sheet
 async function readExcel(worksheet, searchText) {
     let output = { row: -1, column: -1 };
 
@@ -42,7 +45,8 @@ async function readExcel(worksheet, searchText) {
         page.getByRole('button', { name: 'Download' }).click()
     ]);
 
-    const filePath = 'C:\\Users\\hp\\Downloads\\download.xlsx';
+    const filePath = 'C:\\Users\\akumar2\\Downloads\\download.xlsx';
+
     await download.saveAs(filePath);
 
     await writeExcel("Apple", "Krishna", filePath);
