@@ -1,16 +1,21 @@
 import { expect, test } from '@playwright/test';
 
 const {LoginPage} = require('../pageobjects/LoginPage');
+const {DashboardPage} = require('../pageobjects/dashboardPage');
 
 test('Browser Context Playwright Test', async ({page})=>
 {
    const username = "ashishkr403@gmail.com";
-   const password = "Rama@403";
+   const password = "Playwright@123";
    const productName = "ZARA COAT 3"
    const products = page.locator(".card-body");
    const loginPage = new LoginPage(page);
-   loginPage.goTo();
-   loginPage.validLogin(username, password);
+   await loginPage.goTo();
+   await loginPage.validLogin(username, password);
+
+   const dashboardPage = new DashboardPage(page);
+   await dashboardPage.searchProductAddCart(productName);
+   await dashboardPage.navigateToCart();  
    
    //await page.waitForLoadState('networkidle');
      await page.locator(".card-body b").first().waitFor();
@@ -32,7 +37,7 @@ test('Browser Context Playwright Test', async ({page})=>
          
    }
    
-   await page.locator("[routerlink*='cart']").click();
+
    await page.waitForLoadState('networkidle');
    const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
    //expect(bool).toBeTruthy();
