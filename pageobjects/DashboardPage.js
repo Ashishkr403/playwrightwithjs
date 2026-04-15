@@ -5,7 +5,7 @@ class DashboardPage
         //this.page = page;
         this.products = page.locator(".card-body");
         this.productsText = page.locator(".card-body b");
-        this.cart = page.locator("[routerlink*='cart']").click();
+        this.cart = page.locator("[routerlink*='cart']");
     
     }
 

@@ -18,14 +18,14 @@ test('Browser Context Playwright Test', async ({page})=>
    await dashboardPage.navigateToCart();  
    
    //await page.waitForLoadState('networkidle');
-     await page.locator(".card-body b").first().waitFor();
+    // await page.locator(".card-body b").first().waitFor();
    //const allTitels = await page.locator(".card-body b").allTextContents();
    //console.log(allTitels);
    const count = await products.count();
    for(let i=0; i< count; ++i)
    {
       const title = await products.nth(i).locator("b").textContent();
-      console.log(title);
+      console.log("title: " + title);
 
       if(title?.trim() === productName)
 
@@ -36,7 +36,6 @@ test('Browser Context Playwright Test', async ({page})=>
          }
          
    }
-   
 
    await page.waitForLoadState('networkidle');
    const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
@@ -48,7 +47,7 @@ test('Browser Context Playwright Test', async ({page})=>
    //await page.locator("input.input.txt").nth(2).fill("Ashish");     // Name
    //await page.getByRole('button', { name: 'Login' }).click();
    //await page.getByLabel('CVV Code ?').fill("403");
-   console.log(await page.getByLabel("CVV Code ?").count());
+   //console.log("Count of CVV Code input: " + await page.getByLabel("CVV Code ?").count());
 
 
 
@@ -72,7 +71,7 @@ test('Browser Context Playwright Test', async ({page})=>
    await page.locator(".btnn.action__submit.ng-star-inserted").click();
    await expect(page.locator(".hero-primary")).toHaveText(" Thankyou for the order. ");
    const orderId = await page.locator("label[class='ng-star-inserted']").textContent();
-   console.log(orderId);
+   console.log("orderId: " + orderId);
    await page.locator("button[routerlink*='myorders']").click();
    await page.locator("tbody").waitFor();
    
