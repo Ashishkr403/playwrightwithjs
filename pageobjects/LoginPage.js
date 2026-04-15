@@ -17,6 +17,7 @@ class LoginPage {
    await this.userName.fill(username);
    await this.password.fill(password);
    await this.signInButton.click({ force: true });
+   await this.page.waitForLoadState('networkidle');
 
 
     }
