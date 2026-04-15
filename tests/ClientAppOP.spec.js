@@ -5,7 +5,7 @@ const {LoginPage} = require('../pageobjects/LoginPage');
 test('Browser Context Playwright Test', async ({page})=>
 {
    const username = "ashishkr403@gmail.com";
-   const password = "Rama@403";
+   const password = "Playwright@123";
    const productName = "ZARA COAT 3"
    const products = page.locator(".card-body");
    const loginPage = new LoginPage(page);
