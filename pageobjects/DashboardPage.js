@@ -18,6 +18,8 @@ class DashboardPage
    {
       const title = await this.products.nth(i).locator("b").textContent();
       console.log(title);
+      console.log("Title =", title?.trim());
+      console.log("ProductName =", productName);
 
       if(title?.trim() === productName)
 
@@ -38,3 +40,5 @@ class DashboardPage
 }
 
 module.exports = { DashboardPage };
+
+
