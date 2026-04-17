@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 const { POManager } = require('../pageobjects/POManager');
+const { CartPage } = require('../pageobjects/CartPage');
 
 test('Browser Context Playwright Test', async ({page})=>
 {
@@ -18,6 +19,10 @@ test('Browser Context Playwright Test', async ({page})=>
    const dashboardPage = poManager.getDashboardPage();
    await dashboardPage.searchProductAddCart(productName);
    await dashboardPage.navigateToCart();  
+   const cartPage = poManager.getCartPage();
+   await cartPage.VerifyProductIsDisplayed(productName);
+   await cartPage.Checkout();
+
    
    //await page.waitForLoadState('networkidle');
     // await page.locator(".card-body b").first().waitFor();
