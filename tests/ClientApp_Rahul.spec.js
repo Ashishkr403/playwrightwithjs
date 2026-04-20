@@ -1,24 +1,25 @@
  const {test, expect} = require('@playwright/test');
  const {POManager} = require('../pageobjects/POManager');
+ //json->string->js object 'Best way to pick and use test data using below syntax'
+ const dataset = JSON.parse(JSON.stringify(require('../Test_Data/placeorderTest_Data.json')));
 
 
- test('Client App login', async ({page})=>
+ for(const data of dataset)
+ {
+ test(`Client App login for ${data.productName}`, async ({page})=>
  {
    const poManager = new POManager(page);
     //js file- Login js, DashboardPage
-     const username = "ashishkr403@gmail.com";
-     const password = "Playwright@123";
-     const productName = 'ZARA COAT 3';
      const products = page.locator(".card-body");
      const loginPage = poManager.getLoginPage();
      await loginPage.goTo();
-     await loginPage.validLogin(username,password);
+     await loginPage.validLogin(data.username, data.password);
      const dashboardPage = poManager.getDashboardPage();
-     await dashboardPage.searchProductAddCart(productName);
+     await dashboardPage.searchProductAddCart(data.productName);
      await dashboardPage.navigateToCart();
 
     const cartPage = poManager.getCartPage();
-    await cartPage.VerifyProductIsDisplayed(productName);
+    await cartPage.VerifyProductIsDisplayed(data.productName);
     await cartPage.Checkout();
 
     const ordersReviewPage = poManager.getOrdersReviewPage();
@@ -31,41 +32,8 @@
    expect(orderId.includes(await ordersHistoryPage.getOrderId())).toBeTruthy();
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-    
-
-
-    //Zara Coat 4
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
  });
+}
  
 
  
