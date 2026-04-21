@@ -1,6 +1,6 @@
  const {test, expect} = require('@playwright/test');
  const {POManager} = require('../pageobjects/POManager');
- const {customtest} = require('../Test_Data/test-base');
+ const {customtest} = require('../Test_Data/test-base'); // ye humne apna fixture bnaya hai jese ki test and expect fixture inbuilt hai PW ke
  //json->string->js object 'Best way to pick and use test data using below syntax'
  const dataset = JSON.parse(JSON.stringify(require('../Test_Data/placeorderTest_Data.json')));
 
