@@ -1,5 +1,5 @@
 const {test, expect} = require("@playwright/test")
-
+test.describe.configure({mode:'parallel'});  // Paraller mode 
 test("Calendar validations", async ({ page }) => {  
 
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
@@ -22,7 +22,7 @@ test("Calendar validations", async ({ page }) => {
 
 // screenshot - store  - screenshot 
 
-test("visual testing", async ({ page }) => {
+test('@web visual testing', async ({ page }) => {
 
     await page.goto("https://www.flightaware.com/");
 

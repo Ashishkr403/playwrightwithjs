@@ -4,6 +4,7 @@ const { on } = require('node:cluster');
 module.exports = defineConfig({
   testDir: './tests',
   retries: 2,
+  workers: 1,
 
   timeout: 40 * 1000,
 
