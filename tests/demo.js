@@ -19,3 +19,11 @@ function Employee(name, salary) {
 const emp1 = new Employee("Amit", 50000);
 
 console.log(emp1.name); // Amit
+
+let user = {
+  name: "Ashish",
+  age: 37
+};
+
+console.log(user.name); // Ashish
+console.log(user.age); // 37
