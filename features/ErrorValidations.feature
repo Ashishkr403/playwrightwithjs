@@ -1,13 +1,12 @@
-Feature: Ecommerce Validations
+Feature: Ecommerce2 Validations
 
-Scenario: Placing Order
 
-Given a login to Ecommerce application with "ashishkr403@gmail.com" and "Playwright@123"
-When add product to cart "ZARA COAT 3"
-Then Verify "ZARA COAT 3" is displayed in the cart
-When Enter valid details and place the order
-Then Verify order in present in the orderHistory
+//Scenario: Invalid Login Error Validation
 
+//Given a login to Ecommerce2 application with "ashishkr403@gmail.com" and "Playwright@123"
+//Then Verify the error message "Incorrect username/password." is displayed
+
+@smoke
 Scenario Outline:  Invalid Login Error Validation
 
 Given a login to Ecommerce2 application with "<username>" and "<password>"

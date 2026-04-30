@@ -11,12 +11,7 @@ const playwright = require("playwright");
 
          Given('a login to Ecommerce application with {string} and {string}', async function (username, password) {
            // Write code here that turns the phrase above into concrete actions
-            console.log("Step started");
-           const browser = await playwright.chromium.launch({ headless: false });
-            console.log("Browser launched");
-            const context = await browser.newContext();
-            const page = await context.newPage(); 
-           this.poManager = new POManager(page);
+           
             const loginPage = this.poManager.getLoginPage();
             console.log("Opening URL...");
             await loginPage.goTo();
@@ -25,6 +20,8 @@ const playwright = require("playwright");
             console.log("Logging done");
          });
 
+       
+
           When('add product to cart {string}', async function (productName) {
            // Write code here that turns the phrase above into concrete actions
            const dashboardPage = this.poManager.getDashboardPage();
@@ -32,6 +29,8 @@ const playwright = require("playwright");
             await dashboardPage.navigateToCart();
 
          });
+
+        
 
           Then('Verify {string} is displayed in the cart', async function (productName) {
            // Write code here that turns the phrase above into concrete actions
